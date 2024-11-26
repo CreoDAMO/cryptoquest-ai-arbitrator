@@ -1,74 +1,76 @@
-import React, { useRef, useEffect, useState, memo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
-import useWebSocket from '../hooks/useWebSocket';
 
-const TradingFlowVisualization = () => {
-  const { data: tradingData } = useWebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-  const [trades, setTrades] = useState([]);
+const TradingFlowVisualization = ({ trades }) => {
+  const spheres = useMemo(() => {
+    const positions = [];
+    const scales = [];
+    const colors = [];
+    const lines = [];
 
-  useEffect(() => {
-    if (tradingData && tradingData.trades) {
-      setTrades(tradingData.trades);
-    }
-  }, [tradingData]);
+    trades.forEach((trade) => {
+      const sourcePosition = trade.source.position;
+      const destinationPosition = trade.destination.position;
+
+      positions.push(...sourcePosition);
+      scales.push(trade.volume * 0.05);
+      colors.push(0.1, 0.5, 0.9); // Blue for sources
+
+      positions.push(...destinationPosition);
+      scales.push(trade.volume * 0.05);
+      colors.push(0.5, 0.9, 0.1); // Green for destinations
+
+      lines.push(...sourcePosition, ...destinationPosition);
+    });
+
+    return {
+      positions: new Float32Array(positions),
+      scales: new Float32Array(scales),
+      colors: new Float32Array(colors),
+      lines: new Float32Array(lines),
+    };
+  }, [trades]);
 
   return (
     <Canvas>
       <OrbitControls />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      {trades.map((trade, index) => (
-        <TradeVisualization
-          key={index}
-          source={trade.source}
-          destination={trade.destination}
-          volume={trade.volume}
-          rate={trade.rate}
-        />
-      ))}
+      <ambientLight intensity={0.3} />
+      <pointLight position={[10, 10, 10]} intensity={0.8} />
+
+      {/* Batched Spheres */}
+      <points>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            array={spheres.positions}
+            count={spheres.positions.length / 3}
+            itemSize={3}
+          />
+          <bufferAttribute
+            attach="attributes-color"
+            array={spheres.colors}
+            count={spheres.colors.length / 3}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <pointsMaterial size={0.2} vertexColors />
+      </points>
+
+      {/* Batched Trade Lines */}
+      <lineSegments>
+        <bufferGeometry>
+          <bufferAttribute
+            attach="attributes-position"
+            array={spheres.lines}
+            count={spheres.lines.length / 3}
+            itemSize={3}
+          />
+        </bufferGeometry>
+        <lineBasicMaterial color="orange" />
+      </lineSegments>
     </Canvas>
-  );
-};
-
-const TradeVisualization = ({ source, destination, volume }) => {
-  const sphereRef = useRef();
-
-  useFrame(() => {
-    if (sphereRef.current) {
-      sphereRef.current.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * (volume / 100));
-    }
-  });
-
-  return (
-    <>
-      <mesh ref={sphereRef} position={source.position}>
-        <sphereGeometry args={[volume * 0.01, 32, 32]} />
-        <meshStandardMaterial color="blue" />
-      </mesh>
-
-      <mesh position={destination.position}>
-        <sphereGeometry args={[volume * 0.01, 32, 32]} />
-        <meshStandardMaterial color="green" />
-      </mesh>
-
-      <line>
-        <bufferGeometry
-          attach="geometry"
-          attributes={{
-            position: new THREE.BufferAttribute(
-              new Float32Array([
-                ...source.position,
-                ...destination.position,
-              ]),
-              3
-            ),
-          }}
-        />
-        <lineBasicMaterial attach="material" color="orange" />
-      </line>
-    </>
   );
 };
 
