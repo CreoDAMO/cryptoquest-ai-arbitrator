@@ -34,7 +34,7 @@ botConfig.spec.js # Cypress test for bot configuration
 ---
 ## Prerequisites
 Ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v16 or above)
+- [Node.js](https://nodejs.org/) (v20 or above)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - [Make](https://www.gnu.org/software/make/)
 ---
