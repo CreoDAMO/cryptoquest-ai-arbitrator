@@ -7,42 +7,42 @@ export const useWeb3 = () => {
   const [account, setAccount] = useState(null);
   const [error, setError] = useState(null);
 
-  const handleAccountsChanged = useCallback((accounts) => {
-    if (accounts.length === 0) {
-      setAccount(null);
-      setError('Please connect your wallet.');
-    } else {
-      setAccount(accounts[0]);
+  const connectWallet = useCallback(async () => {
+    try {
+      if (window.ethereum) {
+        const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+        const accounts = await web3Provider.send('eth_requestAccounts', []);
+        const chainId = await web3Provider.getNetwork().then((net) => net.chainId);
+
+        if (chainId !== parseInt(process.env.REACT_APP_CHAIN_ID)) {
+          setError(`Please switch to the correct network: ${process.env.REACT_APP_NETWORK_NAME}`);
+          return;
+        }
+
+        setProvider(web3Provider);
+        setAccount(accounts[0]);
+      } else {
+        setError('MetaMask not found. Please install it.');
+      }
+    } catch (err) {
+      setError(err.message);
     }
   }, []);
 
   useEffect(() => {
-    const initWeb3 = async () => {
-      try {
-        if (window.ethereum) {
-          const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-          const accounts = await web3Provider.send('eth_requestAccounts', []);
-          setProvider(web3Provider);
-          setAccount(accounts[0]);
-          window.ethereum.on('accountsChanged', handleAccountsChanged);
-          window.ethereum.on('chainChanged', () => window.location.reload());
-        } else {
-          setProvider(new ethers.providers.JsonRpcProvider(API_CONFIG.INFURA_ENDPOINT));
-        }
-      } catch (err) {
-        setError(err.message);
-      }
-    };
+    connectWallet();
 
-    initWeb3();
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', connectWallet);
+      window.ethereum.on('chainChanged', () => window.location.reload());
+    }
 
     return () => {
       if (window.ethereum) {
-        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
-        window.ethereum.removeListener('chainChanged', () => {});
+        window.ethereum.removeListener('accountsChanged', connectWallet);
       }
     };
-  }, [handleAccountsChanged]);
+  }, [connectWallet]);
 
-  return { provider, account, error };
+  return { provider, account, error, connectWallet };
 };
