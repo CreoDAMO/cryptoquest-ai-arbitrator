@@ -51,21 +51,15 @@ npm install
 3. Set up environment variables:
 Create a `.env` file in the root directory with the following variables:
 ```env
-
-```
-# Infura Project ID and Backend API URL
 REACT_APP_INFURA_PROJECT_ID=your-infura-project-id
 REACT_APP_BACKEND_API_URL=your-backend-api-url
-
-# Smart Contract Addresses
 REACT_APP_STAKING_CONTRACT_ADDRESS=your-staking-contract-address
 REACT_APP_MARKETPLACE_CONTRACT_ADDRESS=your-marketplace-contract-address
 REACT_APP_DAO_CONTRACT_ADDRESS=your-dao-contract-address
-
-# CQT Token Pairs
 REACT_APP_MATIC_CQT_PAIR_ADDRESS=your-matic-cqt-pair-address
 REACT_APP_WBTC_CQT_PAIR_ADDRESS=your-wbtc-cqt-pair-address
 REACT_APP_WETH_CQT_PAIR_ADDRESS=your-weth-cqt-pair-address
+```
 ---
 ## Usage
 ### Development Server
