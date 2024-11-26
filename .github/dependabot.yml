@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: "npm" # Specifies npm as the package manager
+    directory: "/" # Root directory where package.json is located
+    schedule:
+      interval: "weekly" # Dependabot checks for updates weekly
+    commit-message:
+      prefix: "deps" # Prefix for Dependabot pull requests
+    open-pull-requests-limit: 10 # Limits the number of open PRs for updates
+    target-branch: "main" # The default branch for updates
+    ignore:
+      - dependency-name: "react" # Example: Ignore updates for React
+        versions: ["<17.0.0"] # Example: Ignore versions below 17.0.0
+
+  - package-ecosystem: "github-actions" # Specifies updates for GitHub Actions workflows
+    directory: "/" # Root directory containing .github/workflows
+    schedule:
+      interval: "weekly" # Weekly checks for GitHub Actions workflow updates
+    commit-message:
+      prefix: "actions" # Prefix for GitHub Actions update pull requests
+    open-pull-requests-limit: 5 # Limits open PRs for GitHub Actions updates
+
