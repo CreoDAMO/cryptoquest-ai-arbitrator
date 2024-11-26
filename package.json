@@ -41,11 +41,11 @@
     "cypress": "^13.16.0",
     "eslint": "^9.15.0",
     "eslint-config-next": "^15.0.3",
-    "eslint-plugin-prettier": "^5.1.0",
-    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.4.1",
-    "husky": "^8.0.0",
-    "lint-staged": "^14.0.0"
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.10"
   },
   "engines": {
     "node": ">=21.1.0",
