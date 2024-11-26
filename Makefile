@@ -54,7 +54,8 @@ clean:
 .PHONY: lint
 lint:
 	@echo "Running linting checks..."
-	npx eslint src/
+	node --loader ts-node/esm npx eslint src/
+
 
 .PHONY: format
 format:
