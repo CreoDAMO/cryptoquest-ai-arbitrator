@@ -3,7 +3,6 @@
 # Variables
 APP_NAME := cryptoquest-ai-arbitrator
 BUILD_DIR := build
-DOCKER_IMAGE := $(APP_NAME):latest
 
 # Commands
 .PHONY: help
@@ -24,7 +23,7 @@ help:
 .PHONY: env-check
 env-check:
 	@echo "Checking environment variables..."
-	@if [ ! -f .env ]; then echo "Error: .env file not found!"; exit 1; fi
+	@if [ ! -f .env ]; then echo ".env file not found!"; exit 1; fi
 
 .PHONY: dev
 dev: env-check
@@ -37,12 +36,12 @@ build: env-check
 	npm run build
 
 .PHONY: test
-test: env-check
+test:
 	@echo "Running Cypress tests..."
 	npx cypress run
 
 .PHONY: test-headless
-test-headless: env-check
+test-headless:
 	@echo "Running Cypress tests in headless mode..."
 	npx cypress run --headless --browser chrome
 
@@ -54,8 +53,7 @@ clean:
 .PHONY: lint
 lint:
 	@echo "Running linting checks..."
-	node --loader ts-node/esm npx eslint src/
-
+	npx eslint src/
 
 .PHONY: format
 format:
@@ -70,10 +68,9 @@ check-format:
 .PHONY: docker-build
 docker-build:
 	@echo "Building Docker image..."
-	docker build -t $(DOCKER_IMAGE) .
+	docker build -t $(APP_NAME) .
 
 .PHONY: docker-run
-docker-run: docker-build
+docker-run:
 	@echo "Running Docker container..."
-	docker run -p 3000:3000 --env-file .env $(DOCKER_IMAGE)
-
+	docker run -p 3000:3000 --env-file .env $(APP_NAME)
