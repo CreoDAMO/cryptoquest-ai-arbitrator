@@ -1,6 +1,6 @@
-import { FlatESLintConfig } from 'eslint';
+const FlatESLintConfig = require('eslint').FlatESLintConfig;
 
-export default new FlatESLintConfig({
+module.exports = new FlatESLintConfig({
   ignores: ['node_modules', 'build', '.next'],
   files: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
   languageOptions: {
@@ -8,7 +8,6 @@ export default new FlatESLintConfig({
     sourceType: 'module',
   },
   rules: {
-    // Example rules
     'no-unused-vars': 'warn',
     'no-console': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -23,3 +22,4 @@ export default new FlatESLintConfig({
     react: require('eslint-plugin-react'),
   },
 });
+
