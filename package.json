@@ -8,7 +8,11 @@
     "build": "next build",
     "start": "next start",
     "test": "cypress run",
-    "lint": "eslint src/"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --headless --browser chrome",
+    "lint": "eslint src/",
+    "format": "prettier --write .",
+    "check-format": "prettier --check ."
   },
   "keywords": [
     "crypto",
@@ -21,12 +25,13 @@
     "cypress",
     "react"
   ],
-  "author": "Your Name",
+  "author": "Jacque Antoine DeGraff",
   "license": "MIT",
   "dependencies": {
     "@react-three/drei": "^9.56.3",
     "@react-three/fiber": "^8.12.0",
     "d3": "^7.8.2",
+    "dotenv": "^16.3.1",
     "ethers": "^6.13.4",
     "next": "^15.0.3",
     "react": "^18.2.0",
@@ -35,7 +40,12 @@
   "devDependencies": {
     "cypress": "^13.16.0",
     "eslint": "^9.15.0",
-    "eslint-config-next": "^15.0.3"
+    "eslint-config-next": "^15.0.3",
+    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^14.0.0"
   },
   "engines": {
     "node": ">=16.0.0",
