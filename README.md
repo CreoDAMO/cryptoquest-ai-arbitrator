@@ -53,12 +53,13 @@ Create a `.env` file in the root directory with the following variables:
 ```env
 REACT_APP_INFURA_PROJECT_ID=your-infura-project-id
 REACT_APP_BACKEND_API_URL=your-backend-api-url
-REACT_APP_STAKING_CONTRACT_ADDRESS=your-staking-contract-address
-REACT_APP_MARKETPLACE_CONTRACT_ADDRESS=your-marketplace-contract-address
-REACT_APP_DAO_CONTRACT_ADDRESS=your-dao-contract-address
-REACT_APP_MATIC_CQT_PAIR_ADDRESS=your-matic-cqt-pair-address
-REACT_APP_WBTC_CQT_PAIR_ADDRESS=your-wbtc-cqt-pair-address
-REACT_APP_WETH_CQT_PAIR_ADDRESS=your-weth-cqt-pair-address
+REACT_APP_STAKING_CONTRACT_ADDRESS=
+REACT_APP_MARKETPLACE_CONTRACT_ADDRESS=
+REACT_APP_DAO_CONTRACT_ADDRESS=
+REACT_APP_MATIC_CQT_PAIR_ADDRESS=0x0b3cd8a843defdf01564a0342a89ba06c4fc9394
+REACT_APP_WBTC_CQT_PAIR_ADDRESS=0x9a8994d7da7bf54d120943dec46deea79bb0f592
+REACT_APP_WETH_CQT_PAIR_ADDRESS=0xb1e0b26f550203fab31a0d9c1eb4ffe330bfe4d0
+
 ```
 ---
 ## Usage
