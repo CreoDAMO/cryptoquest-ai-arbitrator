@@ -1,6 +1,6 @@
-import React, { useRef, useMemo } from '"react"';
-import { Canvas, useFrame } from '"@react-three/fiber"';
-import * as THREE from '"three"';
+import React, { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 const BatchRendering = ({ trades }) => {
   const groupRef = useRef();
