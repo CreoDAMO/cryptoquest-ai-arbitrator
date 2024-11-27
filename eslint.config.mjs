@@ -1,5 +1,5 @@
 import prettier from "eslint-config-prettier";
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
+import nextCoreWebVitals from "eslint-config-next/core-web-vitals.js"; // Explicit extension
 import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
