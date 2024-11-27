@@ -11,7 +11,7 @@ export const useWeb3 = () => {
     try {
       if (window.ethereum) {
         const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
-        const accounts = await web3Provider.send('"eth_requestAccounts"', []);
+        const accounts = await web3Provider.send("eth_requestAccounts", []);
         const chainId = await web3Provider.getNetwork().then((net) => net.chainId);
 
         if (chainId !== parseInt(process.env.REACT_APP_CHAIN_ID)) {
