@@ -30,8 +30,9 @@ const TradingVolumeChart = ({ data }) => {
       .call(d3.axisBottom(x).tickSizeOuter(0));
 
     svg
-      .`.append("g").attr("transform",·`translate(${margin.left},0)`)`  prettier/prettier;
-
+      .append("g")
+      .attr("transform", `translate(${margin.left}, 0)`);
+    
     svg
       .selectAll(".bar")
       .data(data)
