@@ -1,25 +1,15 @@
-export default [
+module.exports = [
   {
-    ignores: ['node_modules', 'build', '.next'],
-    files: ['src/**/*.js', 'src/**/*.jsx', 'src/**/*.ts', 'src/**/*.tsx'],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
+    extends: ["next/core-web-vitals", "plugin:prettier/recommended"],
+    plugins: ["prettier"],
+    parserOptions: {
+      ecmaVersion: 2021,
+      sourceType: "module",
     },
     rules: {
-      'no-unused-vars': 'warn',
-      'no-console': 'off',
-      'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off',
-    },
-    settings: {
-      react: {
-        version: 'detect',
-      },
-    },
-    plugins: {
-      react: require('eslint-plugin-react'),
+      "prettier/prettier": "error", // Ensure Prettier rules are enforced
+      "no-console": "warn", // Warn on console statements
+      "no-unused-vars": "warn", // Warn on unused variables
     },
   },
 ];
-
