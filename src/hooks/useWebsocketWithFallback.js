@@ -33,10 +33,10 @@ const useWebSocketWithFallback = (websocketUrl, fallbackInterval = 10000, maxFai
         }
       };
 
-      ws.onerror = () => setError('"WebSocket encountered an error."' prettier/prettier);
+      ws.onerror = () => setError('"WebSocket encountered an error."');
 
       ws.onclose = () => {
-        console.warn('"WebSocket closed."' prettier/prettier);
+        console.warn('"WebSocket closed."');
         setFailureCount((count) => count + 1);
 
         if (failureCount >= maxFailures) {
