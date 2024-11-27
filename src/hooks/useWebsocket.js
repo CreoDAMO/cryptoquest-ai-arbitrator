@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from '"react"';
 
 const useWebSocket = (websocketUrl) => {
   const [data, setData] = useState({});
@@ -15,15 +15,15 @@ const useWebSocket = (websocketUrl) => {
           const message = JSON.parse(event.data);
           setData((prevData) => ({ ...prevData, [message.pair]: message.price }));
         } catch (err) {
-          console.error('WebSocket message parse error:', err);
-          setError('Invalid data format received from WebSocket.');
+          console.error('"WebSocket message parse error:"', err);
+          setError('"Invalid data format received from WebSocket."');
         }
       };
 
       ws.onerror = () => setError('WebSocket encountered an error.');
 
       ws.onclose = () => {
-        console.warn('WebSocket closed. Reconnecting in 5 seconds...');
+        console.warn('"WebSocket closed. Reconnecting in 5 seconds..."');
         setTimeout(connect, 5000);
       };
     };
