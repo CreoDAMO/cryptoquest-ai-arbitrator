@@ -36,7 +36,7 @@ const TradingVolumeChart = ({ data }) => {
 
     svg
       .selectAll('".bar"')
-      .data(data)
+      .data('"data"')
       .join('"rect"')
       .attr('"class"', '"bar"')
       .attr('"x"', (d) => x(d.time))
