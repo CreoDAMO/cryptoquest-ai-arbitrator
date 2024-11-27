@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from '"react"';
 
-const TradingFlowVisualization = lazy(() => import('../components/TradingFlowVisualization'));
-const TradingVolumeChart = lazy(() => import('../components/TradingVolumeChart'));
+const TradingFlowVisualization = lazy(() => import('"../components/TradingFlowVisualization"'));
+const TradingVolumeChart = lazy(() => import('"../components/TradingVolumeChart"'));
 
 export async function getServerSideProps() {
   const tradingData = await fetch(`${process.env.BACKEND_API_URL}/market-data`).then((res) =>
