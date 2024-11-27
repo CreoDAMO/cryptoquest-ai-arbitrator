@@ -10,7 +10,7 @@ updates:
     target-branch: "main" # The default branch for updates
     ignore:
       - dependency-name: "react" # Example: Ignore updates for React
-        versions: ["<17.0.0"] # Example: Ignore versions below 17.0.0
+        versions: ["<17.0.0"] # Example: Ignore versions below 20.0.0
 
   - package-ecosystem: "github-actions" # Specifies updates for GitHub Actions workflows
     directory: "/" # Root directory containing .github/workflows
