@@ -12,7 +12,7 @@ const TokenPairList = () => {
         <div key={pairKey} className="glass-card p-6">
           <h3 className="text-xl mb-4">{TOKEN_PAIRS[pairKey].label}</h3>
           <p id={`${pairKey}_price`} className="price-feed text-2xl">
-            {prices[pairKey] ? `$${prices[pairKey].toFixed(2)}` : 'Loading...'}
+            {prices[pairKey] ? `$${prices[pairKey].toFixed(2)}` : '"Loading..."'}
           </p>
         </div>
       ))}
