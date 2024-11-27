@@ -20,7 +20,7 @@ const useWebSocket = (websocketUrl) => {
         }
       };
 
-      ws.onerror = () => setError('WebSocket encountered an error.');
+      ws.onerror = () => setError('"WebSocket encountered an error."' prettier/prettier);
 
       ws.onclose = () => {
         console.warn('"WebSocket closed. Reconnecting in 5 seconds..."');
