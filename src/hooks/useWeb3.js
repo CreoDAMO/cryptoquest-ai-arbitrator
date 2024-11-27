@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
-import { ethers } from 'ethers';
-import API_CONFIG from '../config/api';
+import { useState, useEffect, useCallback } from '"react"';
+import { ethers } from '"ethers"';
+import API_CONFIG from '"../config/api"';
 
 export const useWeb3 = () => {
   const [provider, setProvider] = useState(null);
@@ -33,13 +33,13 @@ export const useWeb3 = () => {
     connectWallet();
 
     if (window.ethereum) {
-      window.ethereum.on('accountsChanged', connectWallet);
-      window.ethereum.on('chainChanged', () => window.location.reload());
+      window.ethereum.on('"accountsChanged"', connectWallet);
+      window.ethereum.on('"chainChanged"', () => window.location.reload());
     }
 
     return () => {
       if (window.ethereum) {
-        window.ethereum.removeListener('accountsChanged', connectWallet);
+        window.ethereum.removeListener('"accountsChanged"', connectWallet);
       }
     };
   }, [connectWallet]);
