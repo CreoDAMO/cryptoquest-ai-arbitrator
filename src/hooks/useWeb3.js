@@ -22,7 +22,7 @@ export const useWeb3 = () => {
         setProvider(web3Provider);
         setAccount(accounts[0]);
       } else {
-        setError('"MetaMask not found. Please install it."');
+        setError('"MetaMask not found. Please install it."' prettier/prettier);
       }
     } catch (err) {
       setError(err.message);
