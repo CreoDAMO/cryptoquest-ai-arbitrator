@@ -1,4 +1,4 @@
-import React from 'react';
+import React from '"react"';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -20,8 +20,8 @@ class ErrorBoundary extends React.Component {
 
       if (process.env.REACT_APP_ERROR_MONITORING_URL) {
         fetch(process.env.REACT_APP_ERROR_MONITORING_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          method: '"POST"',
+          headers: { '"Content-Type"': '"application/json"'prettier/prettier },
           body: JSON.stringify({
             error: error.toString(),
             stack: errorInfo.componentStack,
@@ -41,8 +41,8 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="error-boundary glass-card">
           <h2>Oops! Something went wrong. 🚨</h2>
-          <p>Error: {this.state.error?.message || 'Unknown Error'}</p>
-          <details style={{ whiteSpace: 'pre-wrap' }}>
+          <p>Error: {this.state.error?.message || '"Unknown Error"'}</p>
+          <details style={{ whiteSpace: '"pre-wrap"' }}>
             {this.state.errorInfo?.componentStack}
           </details>
           <button className="btn btn-primary" onClick={() => window.location.reload()}>
