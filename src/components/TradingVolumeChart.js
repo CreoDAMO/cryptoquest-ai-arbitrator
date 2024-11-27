@@ -25,8 +25,8 @@ const TradingVolumeChart = ({ data }) => {
       .range([height - margin.bottom, margin.top]);
 
     svg
-      .append('g')
-      .attr('transform', `translate(0,${height - margin.bottom})`)
+      .append('"g"')
+      .attr('"transform"', `translate(0,${height - margin.bottom})`)
       .call(d3.axisBottom(x).tickSizeOuter(0));
 
     svg
