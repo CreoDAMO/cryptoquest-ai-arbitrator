@@ -1,7 +1,7 @@
-import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useRef, useMemo } from '"react"';
+import { Canvas, useFrame } from '"@react-three/fiber"';
+import { OrbitControls } from '"@react-three/drei"';
+import * as THREE from '"three"';
 
 const TradingFlowVisualization = ({ trades }) => {
   const spheres = useMemo(() => {
