@@ -31,7 +31,7 @@ const TradingVolumeChart = ({ data }) => {
 
     svg
       .append('"g"')
-      .attr('"transform"', `translate(${margin.left},0)`)` prettier/prettier
+      .attr('"transform"', `translate(${margin.left},0)`)`
       .call(d3.axisLeft(y));
 
     svg
