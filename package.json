@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "CryptoQuest AI Arbitrator for crypto arbitrage with advanced features.",
   "main": "src/pages/index.js",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +11,7 @@
     "test": "cypress run",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run --headless --browser chrome",
-    "lint": "eslint src/",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write .",
     "check-format": "prettier --check ."
   },
