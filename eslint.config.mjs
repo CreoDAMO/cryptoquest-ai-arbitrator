@@ -22,14 +22,20 @@ export default [
       prettier: prettierPlugin,
     },
     rules: {
-      "prettier/prettier": "error",
+      "prettier/prettier": ["error", {
+        singleQuote: false,
+        trailingComma: "es5",
+        tabWidth: 2,
+        semi: true,
+        printWidth: 100,
+        bracketSpacing: true,
+        endOfLine: "auto"
+      }],
       "no-console": "warn",
       "no-unused-vars": "warn",
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
     },
   },
-
-  // Change this part
-  prettier
+  prettier,
 ];
