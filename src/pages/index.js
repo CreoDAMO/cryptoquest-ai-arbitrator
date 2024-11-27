@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from '"react"';
 
 const TradingFlowVisualization = lazy(() => import('../components/TradingFlowVisualization'));
 const TradingVolumeChart = lazy(() => import('../components/TradingVolumeChart'));
