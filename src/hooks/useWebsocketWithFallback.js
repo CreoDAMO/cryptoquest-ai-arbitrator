@@ -1,5 +1,5 @@
-import { useState, useEffect } from '"react"';
-import API_CONFIG from '"../config/api"';
+import { useState, useEffect } from "react";
+import API_CONFIG from "../config/api";
 
 const useWebSocketWithFallback = (websocketUrl, fallbackInterval = 10000, maxFailures = 3) => {
   const [data, setData] = useState({});
@@ -28,19 +28,19 @@ const useWebSocketWithFallback = (websocketUrl, fallbackInterval = 10000, maxFai
           setFailureCount(0); // Reset failures on successful message
           setIsPolling(false); // Return to WebSocket mode
         } catch (err) {
-          console.error('"WebSocket message parse error:"', err);
-          setError('"Invalid data format received from WebSocket."');
+          console.error("WebSocket message parse error:", err);
+          setError("Invalid data format received from WebSocket.");
         }
       };
 
-      ws.onerror = () => setError('"WebSocket encountered an error."');
+      ws.onerror = () => setError("WebSocket encountered an error.");
 
       ws.onclose = () => {
-        console.warn('"WebSocket closed."');
+        console.warn("WebSocket closed.");
         setFailureCount((count) => count + 1);
 
         if (failureCount >= maxFailures) {
-          console.warn('"Switching to polling due to repeated WebSocket failures."');
+          console.warn("Switching to polling due to repeated WebSocket failures.");
           setIsPolling(true);
         } else {
           setTimeout(connectWebSocket, Math.min(1000 * Math.pow(2, failureCount), 30000)); // Exponential backoff
