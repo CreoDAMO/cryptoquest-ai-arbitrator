@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component {
       if (process.env.REACT_APP_ERROR_MONITORING_URL) {
         fetch(process.env.REACT_APP_ERROR_MONITORING_URL, {
           method: '"POST"',
-          headers: { '"Content-Type"': '"application/json"'prettier/prettier },
+          headers: { '"Content-Type"': '"application/json"' },
           body: JSON.stringify({
             error: error.toString(),
             stack: errorInfo.componentStack,
