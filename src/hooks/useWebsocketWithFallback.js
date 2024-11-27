@@ -33,10 +33,10 @@ const useWebSocketWithFallback = (websocketUrl, fallbackInterval = 10000, maxFai
         }
       };
 
-      ws.onerror = () => setError('WebSocket encountered an error.');
+      ws.onerror = () => setError('"WebSocket encountered an error."' prettier/prettier);
 
       ws.onclose = () => {
-        console.warn('WebSocket closed.');
+        console.warn('"WebSocket closed."' prettier/prettier);
         setFailureCount((count) => count + 1);
 
         if (failureCount >= maxFailures) {
@@ -52,7 +52,7 @@ const useWebSocketWithFallback = (websocketUrl, fallbackInterval = 10000, maxFai
       try {
         const fetchPrices = async () => {
           const response = await fetch(`${API_CONFIG.ENDPOINTS.MARKET_DATA}`);
-          if (!response.ok) throw new Error('Failed to fetch prices');
+          if (!response.ok) throw new Error('"Failed to fetch prices"');
           const prices = await response.json();
           setPreviousData(data); // Update previous prices
           setData(prices); // Update current prices
