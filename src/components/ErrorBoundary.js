@@ -3,7 +3,7 @@ import React from 'react';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false, error: null, errorInfo: null };
+    this.state = { hasError: false, error: null, errorInfo: null, lastLogged: 0 };
   }
 
   static getDerivedStateFromError(error) {
@@ -13,16 +13,26 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     this.setState({ errorInfo });
 
-    // Log error details to an external monitoring service
-    if (process.env.REACT_APP_ERROR_MONITORING_URL) {
-      fetch(process.env.REACT_APP_ERROR_MONITORING_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          error: error.toString(),
-          stack: errorInfo.componentStack,
-        }),
-      });
+    // Throttle logging to avoid overwhelming the monitoring service
+    const now = Date.now();
+    if (now - this.state.lastLogged > 5000) {
+      this.setState({ lastLogged: now });
+
+      if (process.env.REACT_APP_ERROR_MONITORING_URL) {
+        fetch(process.env.REACT_APP_ERROR_MONITORING_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            error: error.toString(),
+            stack: errorInfo.componentStack,
+            metadata: {
+              url: window.location.href,
+              userAgent: navigator.userAgent,
+              timestamp: new Date().toISOString(),
+            },
+          }),
+        }).catch(console.error); // Handle fetch errors
+      }
     }
   }
 
