@@ -1,6 +1,6 @@
-import React from 'react';
-import useWebSocket from '../hooks/useWebSocket';
-import TOKEN_PAIRS from '../config/tokenPairs';
+import React from '"react"';
+import useWebSocket from '"../hooks/useWebSocket"';
+import TOKEN_PAIRS from '"../config/tokenPairs"';
 
 const TokenPairList = () => {
   const { data: prices, error } = useWebSocket(process.env.REACT_APP_WEBSOCKET_URL);
